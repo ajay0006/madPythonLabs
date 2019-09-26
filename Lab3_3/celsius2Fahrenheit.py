@@ -1,4 +1,7 @@
 # Celsius to Fahrenheit conversion
+import math
+math.degrees()
+
 celsius = input("Enter temp in celsius: ")
 
 fahrenheit = float(float(celsius) * (9 / 5)) + 32
