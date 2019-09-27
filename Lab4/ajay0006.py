@@ -50,7 +50,7 @@ print("you travelled for {0} miles using {1} gallons, you mileage is {2}".format
 print("----------------------------------------------------------------------------------------------------------")
 
 
-# this calculates and displays the result of the conversion between celsius and fahrenheit
+#  this  calls the function that calculates and displays the result of the conversion between celsius and fahrenheit
 
 c = float(input("whats the temperature in celsius> "))
 fahrenheits = celsiusToFahrenheit(c)
