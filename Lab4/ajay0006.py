@@ -34,14 +34,14 @@ def calDistBtwPoints(x1, x2, y1, y2):
 
 printInstructions()
 
-# this calculates and displays the result of the area of the circle
+# this  calls the function that calculates and displays the result of the area of the circle
 
 r = float(input("please enter the radius of this circle>: "))
 Area = areaOfCircle(r)
 print("the Area of a circle of radius r = {1} is {0}".format(Area, r))
 print("----------------------------------------------------------------------------------------------------------")
 
-# this calculates and displays the result of the mileage
+# this  calls the function that this calculates and displays the result of the mileage
 
 m = float(input("please how many miles did you travel> "))
 g = input("please how many gallons of fuel did you use > ")
