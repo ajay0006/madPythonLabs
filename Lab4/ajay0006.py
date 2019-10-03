@@ -7,23 +7,28 @@ def printInstructions():
     print("this program will calculate area of a circle, mpg, celsius to fahrenheit and distance between two points ")
     print("----------------------------------------------------------------------------------------------------------")
 
+
 # Function for area of circle
 def areaOfCircle(radius):
     area = pi * radius ** 2
     return area
+
 
 # Function for MPG
 def mpg(miles, gallon):
     mileage = int(miles) / int(gallon)
     return mileage
 
+
 # Function for temperature conversion
 def celsiusToFahrenheit(celsius):
     fahrenheit = float(float(celsius) * (9 / 5)) + 32
     return fahrenheit
+
+
 # Function for distance between two points
 def calDistBtwPoints(x1, x2, y1, y2):
-    if x2 < x1 or y2 < y1:
+    if (x2 < x1) or (y2 < y1):
         exit("please enter valid variables")
     else:
         a = x2 - x1
@@ -48,7 +53,6 @@ g = input("please how many gallons of fuel did you use > ")
 mileages = mpg(m, g)
 print("you travelled for {0} miles using {1} gallons, you mileage is {2}".format(m, g, mileages))
 print("----------------------------------------------------------------------------------------------------------")
-
 
 #  this  calls the function that calculates and displays the result of the conversion between celsius and fahrenheit
 
