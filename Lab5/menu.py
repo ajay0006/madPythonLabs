@@ -198,7 +198,6 @@ Hello, Please Select a function to execute:
             clearBacklight()
 
         if choice == 6:
-            print("6")
             sys.exit(0)
 
 
