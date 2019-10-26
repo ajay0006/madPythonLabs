@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7c03e723-b306-4c84-918a-28da86065502" name="petersPi" url="http://169.254.95.118">
+        <fileTransfer host="169.254.95.118" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="8f5b4d97-c02b-4fda-bc12-5512a3f59c87" name="pi_wifi_home" url="http://192.168.2.57">
+        <fileTransfer host="192.168.2.57" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="9dcfcf3d-544a-4f9e-b27a-c0c8df7f63d0" name="pi_ethernet" url="http://169.254.124.117">
+        <fileTransfer host="169.254.124.117" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

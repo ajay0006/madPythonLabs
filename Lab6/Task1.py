@@ -82,7 +82,7 @@ def upArrowPressed(up, xup=x2, yup=y2):
         if yup == 0:
             print('fourth up arrow', yup)
             yup = 63
-            yup -= 1
+            # yup -= 1
             print('fifth up arrow', yup)
             lcd.set_pixel(xup, yup, 1)
             lcd.show()
