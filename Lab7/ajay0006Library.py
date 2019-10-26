@@ -407,31 +407,37 @@ def checkCollision(obj, xLoop, yLoop, dx=10, dy=10, Sx=128, Sy=64):
     while True:
         if 0 < (xLoop + width) <= Sx:
             # +ve increment in both x an y
-            print('x:{} y:{} 1a'.format(xLoop, yLoop))
+            # print('x:{} y:{} 1a'.format(xLoop, yLoop))
             xLoop += dx
             yLoop += dy
-            print('x:{} y:{} 1b'.format(xLoop, yLoop))
+            # print('x:{} y:{} 1b'.format(xLoop, yLoop))
             if yLoop < 0:
+                # returns a positive value for the y coordinate
                 yLoop = yLoop + abs(yLoop)
                 dy = abs(dy)
         if (yLoop + height) > Sy:
-            print('x:{} y:{} 2a'.format(xLoop, yLoop))
+            # print('x:{} y:{} 2a'.format(xLoop, yLoop))
+            # ensures that the increment is +ve
             dy = -abs(dy)
             yLoop += dy
-            print('x:{} y:{} 2b'.format(xLoop, yLoop))
+            # print('x:{} y:{} 2b'.format(xLoop, yLoop))
             if xLoop < 0:
-                print('x:{} y:{} 2c'.format(xLoop, yLoop))
+                # print('x:{} y:{} 2c'.format(xLoop, yLoop))
+                # converts the x coordinate to a positive value
                 xLoop = xLoop + abs(xLoop)
+                # converts the increment on the x-axis to a positive value
                 dx = abs(dx)
-                print('x:{} y:{} 2d'.format(xLoop, yLoop))
+                # print('x:{} y:{} 2d'.format(xLoop, yLoop))
         if (xLoop + width) > Sx:
-            print('x:{} y:{} 3a'.format(xLoop, yLoop))
+            # print('x:{} y:{} 3a'.format(xLoop, yLoop))
+            # converts the increment on the x-axis to a negative value so it decrements
             dx = -abs(dx)
             xLoop += dx
             # yLoop += dy
-            print('x:{} y:{} 3b'.format(xLoop, yLoop))
+            # print('x:{} y:{} 3b'.format(xLoop, yLoop))
         if yLoop <= 0:
-            print('x:{} y:{} 4a'.format(xLoop, yLoop))
+            # print('x:{} y:{} 4a'.format(xLoop, yLoop))
+            # converts the increment on the y-axis to a positive value
             dy = abs(dy)
             yLoop += dy
             # xLoop += dx
@@ -443,5 +449,6 @@ def checkCollision(obj, xLoop, yLoop, dx=10, dy=10, Sx=128, Sy=64):
             xLoop += dx
             # yLoop += dy
             print('x:{} y:{} 5b'.format(xLoop, yLoop))
+        #     calls the move and erase object functions and passes the values from the loop one at a time
         moveObject(obj, xLoop, yLoop)
         eraseObject1(eraseBall, xLoop, yLoop)
