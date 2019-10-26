@@ -1,4 +1,4 @@
-import ajay0006Lib as Dj
+import ajay0006Library as Dj
 
 ball = [
     [0, 0, 0, 1, 1, 0, 0, 0],
