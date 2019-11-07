@@ -34,19 +34,26 @@ def writeInstance(rDFC, fileName):
         # close the write instance
         csvReadDatafile.close()
 
-# function that gives the option for you  to choose what you want to name the output csv file
+
+# function that gives the option for you  to choose what you want to name the output csv file for the boys data
 def getNameBoysOfFile():
     boysFileName = str(input('please enter what you would like to name the boys file with the csv extension'))
     return boysFileName
 
 
+# function that gives the option for you  to choose what you want to name the output csv file for the girls data
 def getNameOfGirlsFile():
     girlsFileName = str(input('please enter what you would like to name the girls file with the csv extension'))
     return girlsFileName
 
 
+# stores the the boys data retrieved from the function
 boys = readBoys_GirlDataFileCSV()[0]
+
+# stores the the girls data retrieved from the function
 girls = readBoys_GirlDataFileCSV()[1]
 
+# passes the boys data, as well a the file name chosen
 writeInstance(boys, getNameBoysOfFile())
+# passes the girls data, as well a the file name chosen
 writeInstance(girls, getNameOfGirlsFile())
