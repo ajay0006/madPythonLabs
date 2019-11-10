@@ -1,6 +1,16 @@
-import csv
 # classical imports for the gfxHat
-from gfxhat import lcd, fonts, backlight
+import csv
+import random
+
+from gfxhat import lcd, backlight
+
+
+def setBacklight():
+    r = random.randint(100, 255)
+    g = random.randint(100, 255)
+    b = random.randint(100, 255)
+    backlight.set_all(r, g, b)
+    backlight.show()
 
 
 # created an empty list that's gonna be used to hold the data from the text file
@@ -9,7 +19,7 @@ from gfxhat import lcd, fonts, backlight
 def generateLists():
     fontFileContent = []
     # created an object instance container for the file i want to open
-    with open('font3.txt', newline='') as fontCsvFile:
+    with open('font3.txt', newline='', encoding='utf-8-sig') as fontCsvFile:
         # i noticed a slight formatting error, so i formatted the instance to see whitespaces as quotes
         # that way i am able to get each value in a separate index, making it easier to extract the character and its
         # subsequent code
@@ -108,7 +118,7 @@ def convertBinaryListToMultiList(binaryList):
     return binaryList
 
 
-#   the infamous display object function
+# the infamous display object function
 def displayObject(obj, x, y):
     i = 0
     for line in obj:
@@ -128,7 +138,8 @@ try:
     D = getKeyValue(drawChar, C)
     E = keyValueToBinary(D)
     F = convertBinaryListToMultiList(E)
+    print(F)
     displayObject(F, 63, 31)
 
 except:
-    print("you have entered a character whose draw pattern is unavailable at the moment, ps try again later!!!")
+    print("you have entered a character whose draw pattern is unavailable at the moment, pls try again later!!!")
