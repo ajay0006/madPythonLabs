@@ -18,9 +18,11 @@ def generateLists():
             fontFileContent.extend(row)
         #         print statement is just to confirm my output is accurate
         fontCsvFile.close()
+        # just testing
         print(len(fontFileContent), 'length of list')
+        print(fontFileContent[0])
+        # fontFileContentCopy = list(fontFileContent)
         return fontFileContent
-    # print(fontFileContent)
 
 
 def generateDictionary(hexList):
@@ -28,7 +30,7 @@ def generateDictionary(hexList):
     j = 0
     k = 1
     i = 0
-    lengthList = (len(fontFileContent))/2
+    lengthList = (len(fontFileContent)) / 2
     while i < lengthList:
         thisDict[hexList[k]] = hexList[j]
         j += 2
@@ -39,6 +41,3 @@ def generateDictionary(hexList):
 
 b = generateLists()
 print(generateDictionary(b))
-
-# dami your gonna have to google how to convert a list to a dictionary, should be easy
-# that's all that is left to do
