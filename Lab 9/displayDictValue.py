@@ -5,7 +5,7 @@ import random
 from gfxhat import lcd, backlight
 
 
-def setBacklight():
+def setBackLight():
     r = random.randint(100, 255)
     g = random.randint(100, 255)
     b = random.randint(100, 255)
@@ -132,6 +132,7 @@ def displayObject(obj, x, y):
 
 drawChar = str(input("kindly type a character: "))
 try:
+    setBackLight()
     A = generateLists()
     B = remove0x(A)
     C = generateDictionary(B)
