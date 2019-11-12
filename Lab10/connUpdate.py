@@ -14,6 +14,17 @@ def request():
         print("you have entered an invalid selection")
 
 
-def createConnectionSql():
+def createConnectionSql(db_file):
+    connector = sqlite3.connect(db_file)
+    return connector
 
-print(request())
+
+def getDataViConnectorFromDb(connection):
+    dataCursor = connection.cursor()
+    dataCursor.execute("select link from lab10 where id = ?", (request(),))
+    rows = dataCursor.fetchall()
+    for row in rows:
+        print(row)
+
+
+getDataViConnectorFromDb(createConnectionSql('week10.db'))
