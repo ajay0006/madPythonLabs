@@ -1,5 +1,6 @@
 import sqlite3
 import base64
+import webbrowser
 
 
 def request():
@@ -19,7 +20,7 @@ def createConnectionSql(db_file):
     return connector
 
 
-def getDataViConnectorFromDb(connection):
+def getDataViaConnectorFromDb(connection):
     dataCursor = connection.cursor()
     dataCursor.execute("select link from lab10 where id = ?", (request(),))
     rows = dataCursor.fetchall()
@@ -28,12 +29,17 @@ def getDataViConnectorFromDb(connection):
         return row[0]
 
 
-test = getDataViConnectorFromDb(createConnectionSql('week10.db'))
-
-
 def decodeRetrievedData(data):
     test2 = base64.urlsafe_b64decode(data)
-    print(test2)
+    # print(test2)
+    return test2
 
 
-decodeRetrievedData(test)
+def openWebBrowserLink(link):
+    webbrowser.open(link, new=2, autoraise=True)
+
+
+sqlConn = createConnectionSql('week10.db')
+selectQuery = getDataViaConnectorFromDb(sqlConn)
+decrypt = decodeRetrievedData(selectQuery)
+openWebBrowserLink(decrypt)
