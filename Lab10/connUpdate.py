@@ -24,7 +24,16 @@ def getDataViConnectorFromDb(connection):
     dataCursor.execute("select link from lab10 where id = ?", (request(),))
     rows = dataCursor.fetchall()
     for row in rows:
-        print(row)
+        print(row[0])
+        return row[0]
 
 
-getDataViConnectorFromDb(createConnectionSql('week10.db'))
+test = getDataViConnectorFromDb(createConnectionSql('week10.db'))
+
+
+def decodeRetrievedData(data):
+    test2 = base64.urlsafe_b64decode(data)
+    print(test2)
+
+
+decodeRetrievedData(test)
