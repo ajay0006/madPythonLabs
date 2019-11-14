@@ -14,9 +14,11 @@ import textwrap
 def request():
     try:
         userRequest = int(input("Please enter a number from 1 - 24: "))
-        if 24 <= userRequest < 0:
+        if userRequest == 'q':
+            exit()
+        elif 24 <= userRequest < 0:
             print('You have entered a value less than 0 or greater than 24')
-        if 24 >= userRequest > 0:
+        elif 24 >= userRequest > 0:
             return userRequest
 
     except:
@@ -46,7 +48,7 @@ def openWebBrowserLink(link):
     webbrowser.open(link, new=2, autoraise=True)
 
 
-sqlConn = createConnectionSql('week10.db')
+sqlConn = createConnectionSql('week10 - Test.db')
 selectQuery = getDataViaConnectorFromDb(sqlConn)
 decrypt = decodeRetrievedData(selectQuery)
 openWebBrowserLink(decrypt)
