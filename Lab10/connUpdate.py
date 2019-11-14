@@ -1,6 +1,14 @@
 import sqlite3
 import base64
 import webbrowser
+from geolocation.main import GoogleMaps
+import requests
+from lxml import html
+import textwrap
+
+
+# import geolocation
+# from geolocation.main import GoogleMaps
 
 
 def request():
@@ -25,13 +33,12 @@ def getDataViaConnectorFromDb(connection):
     dataCursor.execute("select link from lab10 where id = ?", (request(),))
     rows = dataCursor.fetchall()
     for row in rows:
-        print(row[0])
         return row[0]
 
 
 def decodeRetrievedData(data):
-    test2 = base64.urlsafe_b64decode(data)
-    # print(test2)
+    test2 = base64.urlsafe_b64decode(data).decode('utf-8')
+    print(test2)
     return test2
 
 
@@ -43,3 +50,47 @@ sqlConn = createConnectionSql('week10.db')
 selectQuery = getDataViaConnectorFromDb(sqlConn)
 decrypt = decodeRetrievedData(selectQuery)
 openWebBrowserLink(decrypt)
+
+
+# def requestsTest():
+#     term = 'meta content'
+#     resp = requests.get(decrypt + term)
+#     # print('begin' + resp.text)
+#     root = html.fromstring(resp.text)
+#     print('begin', root, '2')
+# #
+#     for sel in root:
+#         print(sel)
+# #         if sel.text:
+# #             s = sel.text.strip()
+# #             print(s)
+# #             if len(s) > 3:
+# #                 print(textwrap.fill(s, width=50))
+#
+#     # print(resp.text)
+
+
+def updateCityCountry():
+    response = []
+    # response = requests.get(decrypt)
+    tester = requests.get(decrypt).content.decode('utf-8')
+    # testerR = tester.content.decode('utf-8')
+    # print(tester)
+    testerR = tester.rstrip('\n').split('"')
+    # testerR = tester
+    for row in testerR:
+        response.append(row)
+    print('test2', response[35])
+
+
+#
+# def testRequests():
+#     address = decrypt
+#     google_maps = GoogleMaps(api_key="AIzaSyAEk_XVCNBK9RavS6KiXXfQW-fRvMzKt5o")
+#     location = google_maps.search(location=address)
+#     print(location.all())
+#
+#
+# testRequests()
+# requestsTest()
+updateCityCountry()
