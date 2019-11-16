@@ -2,25 +2,23 @@ import sqlite3
 import base64
 import time
 import webbrowser
-import requests
-from geolocation.main import GoogleMaps
-from lxml import html
-import textwrap
 
 
+# input statement to request the id
 def requestUser():
     iD = input("please enter a number from 1 - 24 or press q to exit: ")
     return iD
 
 
+# input statement to get the city, country, first name and return these values
 def requestCityCountryFirstNameLastName():
-    City = input('Please enter the name of the city: ')
-    Country = input('Please enter the name of the country: ')
-    FName = input('Please enter the student first name: ')
-    LName = input('Please enter the student Last name: ')
-    return City, Country, FName, LName
+    City = str(input('Please enter the name of the city: '))
+    Country = str(input('Please enter the name of the country: '))
+    FName = str(input('Please enter the student first name: '))
+    return City, Country, FName
 
 
+# creates a connection to the database as well as an edit instance, and returns the open instance
 def createConnectionSql(db_file):
     connector = None
     dataCursor = None
@@ -33,6 +31,8 @@ def createConnectionSql(db_file):
     return connector, dataCursor
 
 
+# takes edit instance and id inputed by user as variables, to select data from database
+# returns the fetched data from the database
 def getDataViaConnectorFromDb(dataCursor1, dbID):
     dataCursor1.execute("select link from lab10 where id = ?", (dbID,))
     rows = dataCursor1.fetchall()
@@ -40,22 +40,26 @@ def getDataViaConnectorFromDb(dataCursor1, dbID):
         return row[0]
 
 
+# decodes the fetched data, returns the decoded data
 def decodeRetrievedData(rData):
     test2 = base64.urlsafe_b64decode(rData).decode('utf-8')
     print(test2)
     return test2
 
 
+# opens the weblink in the default browser
 def openWebBrowserLink(link):
     webbrowser.open(link, new=2, autoraise=True)
 
 
+# updates the database using the connection instance, and closes the connection when done
 def updateTable(connector, dataCursor2, City, Country, Student, Id):
     dataCursor2.execute("update Lab10 set City=?, Country=?, Student=? where id = ?", (City, Country, Student, Id))
     connector.commit()
     connector.close()
 
 
+# simple while loop that keeps running until 'q' is pressed
 while True:
     iDValue = requestUser()
     try:
@@ -68,13 +72,13 @@ while True:
 
         elif 24 >= int(iDValue) > 0:
             iDValue2 = int(iDValue)
-            connDb, cursor = createConnectionSql('week10Test.db')
+            connDb, cursor = createConnectionSql('week10.db')
             data = getDataViaConnectorFromDb(cursor, iDValue2)
             decodedValue = decodeRetrievedData(data)
             openWebBrowserLink(decodedValue)
             # extractCityCountry(decodedValue)
             time.sleep(3)
-            city, country, FirstName, LastName = requestCityCountryFirstNameLastName()
+            city, country, FirstName = requestCityCountryFirstNameLastName()
             updateTable(connDb, cursor, city, country, FirstName, iDValue)
 
     except:
