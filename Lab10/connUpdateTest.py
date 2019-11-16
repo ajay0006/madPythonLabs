@@ -13,6 +13,13 @@ def requestUser():
     return iD
 
 
+# def testRequests():
+#     address = decrypt
+#     google_maps = GoogleMaps(api_key="AIzaSyAEk_XVCNBK9RavS6KiXXfQW-fRvMzKt5o")
+#     location = google_maps.search(location=address)
+#     print(location.all())
+
+
 def requestCityCountryFirstNameLastName():
     City = input('Please enter the name of the city: ')
     Country = input('Please enter the name of the country: ')
@@ -54,6 +61,21 @@ def updateTable(connector, dataCursor2, City, Country, Student, Id):
     dataCursor2.execute("update Lab10 set City=?, Country=?, Student=? where id = ?", (City, Country, Student, Id))
     connector.commit()
     connector.close()
+
+
+def extractCityCountry(decrypt):
+    response = []
+    # response = requests.get(decrypt)
+    tester = requests.get(decrypt).content.decode('utf-8')
+    # testerR = tester.content.decode('utf-8')
+    # print(tester)
+    testerR = tester.rstrip('\n').split('"')
+    # testerR = tester
+    for row in testerR:
+        response.append(row)
+    print('test2', response[35], response[63])
+    return response
+
 
 
 while True:
