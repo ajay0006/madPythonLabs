@@ -60,19 +60,20 @@ def updateTable(connector, dataCursor2, City, Country, Student, Id):
 
 
 # simple while loop that keeps running until 'q' is pressed
-while True:
+x = 0
+while x == 0:
     iDValue = requestUser()
     try:
 
         if iDValue == 'q':
             exit()
 
-        elif int(iDValue) >= 25:
+        elif 0 >= int(iDValue) >= 25:
             print('You have entered a value less than 0 or greater than 24: ')
 
         elif 24 >= int(iDValue) > 0:
             iDValue2 = int(iDValue)
-            connDb, cursor = createConnectionSql('week10.db')
+            connDb, cursor = createConnectionSql('week10Blank.db')
             data = getDataViaConnectorFromDb(cursor, iDValue2)
             decodedValue = decodeRetrievedData(data)
             openWebBrowserLink(decodedValue)
@@ -83,3 +84,4 @@ while True:
 
     except:
         print("you have entered an invalid selection")
+        x += 1
