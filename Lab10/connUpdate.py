@@ -5,8 +5,8 @@ import webbrowser
 
 
 # input statement to request the id
-def requestUser():
-    iD = input("please enter a number from 1 - 24 or press q to exit: ")
+def requestUser(rowLength):
+    iD = input("please enter a number from 1 -" + str(rowLength) + " or press q to exit: ")
     return iD
 
 
@@ -25,8 +25,9 @@ def createConnectionSql(db_file):
 
 # gets the total number of rows so i can use it for my if else statement
 def getTotalNoOfRowsInDb(dataCursor1):
-    noOfRows = dataCursor1.execute("select count(*) from lab10")
-    return noOfRows
+    dataCursor1.execute("select count(*) from lab10")
+    noOfRows = dataCursor1.fetchall()
+    return int(noOfRows[0][0])
 
 
 # takes edit instance and id inputed by user as variables, to select data from database
@@ -60,27 +61,31 @@ def requestCityCountryFirstNameLastName():
 
 # updates the database using the connection instance, and closes the connection when done
 def updateTable(connector, dataCursor2, City, Country, Student, Id):
-    dataCursor2.execute("update Lab10 set City=?, Country=?, Student=? where id = ?", (City, Country, Student, Id))
+    dataCursor2.execute('update Lab10 set City=?, Country=?, Student=? where id = ?', (City, Country, Student, Id))
     connector.commit()
     connector.close()
+
+
+# .......................................... FUNCTION DECLARATION END .................................................
 
 
 # simple while loop that keeps running until 'q' is pressed
 x = 0
 while x == 0:
-    iDValue = requestUser()
+    connDb, cursor = createConnectionSql('week10.db')
+    totalNoRows = getTotalNoOfRowsInDb(cursor)
+    iDValue = requestUser(totalNoRows)
     try:
 
         if iDValue == 'q':
             exit()
 
-        elif 0 >= int(iDValue) >= 25:
-            print('You have entered a value less than 0 or greater than 24: ')
+        elif int(iDValue) > totalNoRows:
+            print('You have entered a value less than 0 or greater than ' + str(totalNoRows) + ' : ')
 
-        elif 24 >= int(iDValue) > 0:
+        elif totalNoRows >= int(iDValue) > 0:
             iDValue2 = int(iDValue)
-            connDb, cursor = createConnectionSql('week10.db')
-            noOfRows, data = getDataViaConnectorFromDb(cursor, iDValue2)
+            data = getDataViaConnectorFromDb(cursor, iDValue2)
             decodedValue = decodeRetrievedData(data)
             openWebBrowserLink(decodedValue)
             # extractCityCountry(decodedValue)
