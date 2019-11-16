@@ -13,19 +13,19 @@ def requestUser():
     return iD
 
 
-# def testRequests():
-#     address = decrypt
-#     google_maps = GoogleMaps(api_key="AIzaSyAEk_XVCNBK9RavS6KiXXfQW-fRvMzKt5o")
-#     location = google_maps.search(location=address)
-#     print(location.all())
+def testRequests(decrypt):
+    address = decrypt
+    google_maps = GoogleMaps(api_key="AIzaSyAEk_XVCNBK9RavS6KiXXfQW-fRvMzKt5o")
+    location = google_maps.search(location=address)
+    print(location.all())
 
 
 def requestCityCountryFirstNameLastName():
-    City = input('Please enter the name of the city: ')
-    Country = input('Please enter the name of the country: ')
+    # City = input('Please enter the name of the city: ')
+    # Country = input('Please enter the name of the country: ')
     FName = input('Please enter the student first name: ')
     LName = input('Please enter the student Last name: ')
-    return City, Country, FName, LName
+    return FName, LName
 
 
 def createConnectionSql(db_file):
@@ -77,27 +77,27 @@ def extractCityCountry(decrypt):
     return response
 
 
-
 while True:
     iDValue = requestUser()
-    try:
+    # try:
 
-        if iDValue == 'q':
-            exit()
+    if iDValue == 'q':
+        exit()
 
-        elif int(iDValue) >= 25:
-            print('You have entered a value less than 0 or greater than 24: ')
+    elif int(iDValue) >= 25:
+        print('You have entered a value less than 0 or greater than 24: ')
 
-        elif 24 >= int(iDValue) > 0:
-            iDValue2 = int(iDValue)
-            connDb, cursor = createConnectionSql('week10Test.db')
-            data = getDataViaConnectorFromDb(cursor, iDValue2)
-            decodedValue = decodeRetrievedData(data)
-            openWebBrowserLink(decodedValue)
-            # extractCityCountry(decodedValue)
-            time.sleep(3)
-            city, country, FirstName, LastName = requestCityCountryFirstNameLastName()
-            updateTable(connDb, cursor, city, country, FirstName, iDValue)
+    elif 24 >= int(iDValue) > 0:
+        iDValue2 = int(iDValue)
+        connDb, cursor = createConnectionSql('week10Blank.db')
+        data = getDataViaConnectorFromDb(cursor, iDValue2)
+        decodedValue = decodeRetrievedData(data)
+        openWebBrowserLink(decodedValue)
+        city, country = extractCityCountry(decodedValue)
+        testRequests(decodedValue)
+        time.sleep(3)
+        FirstName, LastName = requestCityCountryFirstNameLastName()
+        updateTable(connDb, cursor, city, country, FirstName, iDValue)
 
-    except:
-        print("you have entered an invalid selection")
+    # except:
+    #     print("you have entered an invalid selection")

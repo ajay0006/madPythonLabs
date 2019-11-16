@@ -73,7 +73,7 @@ while x == 0:
 
         elif 24 >= int(iDValue) > 0:
             iDValue2 = int(iDValue)
-            connDb, cursor = createConnectionSql('week10Blank.db')
+            connDb, cursor = createConnectionSql('week10.db')
             data = getDataViaConnectorFromDb(cursor, iDValue2)
             decodedValue = decodeRetrievedData(data)
             openWebBrowserLink(decodedValue)
