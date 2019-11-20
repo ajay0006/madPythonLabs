@@ -13,7 +13,8 @@ Thumbs.db
 # folders to be ignored
 env/
 __pycache__/
+Presidents/
 
 # files to be ignored
 pres2.py
-Presidents
+
