@@ -13,7 +13,11 @@
 	<!-- REPLACE the brackets below with the correct placeholder to fill in the
 		 data required. Refer to presidents.csv for column headings -->
 
-	<p>[president's name] was born on [date], in [place]. He was [age] when he took office on [date]. He was a member of the [party] Party. He left office on [date]. His occupation before the presidency: [occupation]. His college: [college]. He died in [place] on [date].</p>
+	<p>{{ pres['President']}} was born on {{ pres['Birth-date']}}, in {{ pres['Westmoreland County, Virginia']}}.
+        He was {{ pres['Age-when-took-office']}} when he took office on {{ pres['Took-office']}}. He was a member of
+        the {{ pres['Party']}} Party. He left office on {{ pres['Left-office']}}.
+        His occupation before the presidency: {{ pres['Occupation']}}.
+        His college: {{ pres['College']}}. He died in {{ pres['Mount Vernon, Virginia']}} on {{ pres['Death-date']}}.</p>
 
 
 	<p><a href="{{ pres['Wikipedia-entry'] }}">View Wikipedia entry for {{ pres['President'] }}.</a></p>

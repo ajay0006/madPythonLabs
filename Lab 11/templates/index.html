@@ -17,7 +17,7 @@
 
     <ul>
     {% for pair in pairs %}
-        <li><a href="/president/{{ pair[0] }}">{{ pair[1] }}</a></li>
+        <li><a href="{{ url_for( 'detail', num=pair[0] ) }}">{{ pair[1] }}</a></li>
     {% endfor %}
     </ul>
 
