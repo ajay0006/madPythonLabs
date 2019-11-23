@@ -1,5 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template
+from appModules import createConnectionSql, getTotalNoOfRowsInDb, getAllDataFrmDb
 
+a, b = createConnectionSql()
+totalRows = getTotalNoOfRowsInDb(b)
+value = getAllDataFrmDb(b, a)
+# print(totalRows)
+print(value)
+print(totalRows)
 app = Flask(__name__)
 
 
@@ -9,4 +16,4 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
