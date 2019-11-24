@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>The IAWD Student & Country Index</h1>
+
+<p>Click any Students</p>
+
+<!-- pairs is a list that must be sent here by a route function
+
+     The list will contain 45 pairs: a presidency number, and a
+     president's name -->
+
+     <!--       later editing change         -->
+     <!--  url_for( 'detail', num=pair[0] )  -->
+     <!--    inside double curly braces      -->
+
+    <ul>
+    {% for pair in pairs %}
+        <li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
