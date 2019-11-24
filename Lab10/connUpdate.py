@@ -27,6 +27,7 @@ def createConnectionSql(db_file):
 def getTotalNoOfRowsInDb(dataCursor1):
     dataCursor1.execute("select count(*) from lab10")
     noOfRows = dataCursor1.fetchall()
+    print(noOfRows, 'what u look like')
     return int(noOfRows[0][0])
 
 
