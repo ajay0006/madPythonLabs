@@ -9,3 +9,5 @@ def user(username):
     return render.template('user.html', username = username,course='cst8279')
 
 # the <abc> is an argument
+
+# create a u

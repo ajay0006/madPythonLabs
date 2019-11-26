@@ -57,13 +57,16 @@ def displayAll():
     studentName = []
     studentCity = []
     studentCountry = []
+    studentOriginLink = []
     for extract in valueLists:
         studentName.append(extract['Student'])
         studentCity.append(extract['City'])
         studentCountry.append(extract['Country'])
-        triplePairsValues = zip(studentName,studentCity,studentCountry)
-        return render_template('displayAll.html', triplePairs = triplePairsValues, the_title='Full Student and Origin Table')
-
+        studentOriginLink.append(extract['Link'])
+    fourPairsValues = zip(studentName, studentCity, studentCountry, studentOriginLink)
+    test = list(fourPairsValues)
+    return render_template('displayAll.html', fourPairs=test,
+                           the_title='Full Student and Origin Table')
 
 
 if __name__ == '__main__':

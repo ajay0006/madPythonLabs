@@ -2,19 +2,26 @@
 
 {% block content %}
 
-<h3> Full Student Details</h3>
+    <h3> Full Student Details</h3>
 
-<div>
-    <table class = "table" style="width: 100%">
-        <thead>
-        <tr>
-            <th scope="col"> Student Name</th>
-            <th scope="col"> City</th>
-            <th scope="col"> Country</th>
-        </tr>
-        <tr>
-           {% for  %}
-        </tr>
-        </thead>
-    </table>
-</div>
+    <div>
+        <table class="table" style="width: 100%">
+            <thead>
+            <tr>
+                <th scope="col"> Student Name</th>
+                <th scope="col"> City</th>
+                <th scope="col"> Country</th>
+            </tr>
+            {% for pair in fourPairs %}
+                <tr>
+
+                    <td><a href="{{ pair[3] }}">{{ pair[0] }}</a></td>
+                    <td>{{ pair[1] }}</td>
+                    <td>{{ pair[2] }}</td>
+
+                </tr>
+            {% endfor %}
+            </thead>
+        </table>
+    </div>
+{% endblock %}
