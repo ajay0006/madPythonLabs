@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>{{ the_title }}</title>
+    <title>{{ the_title }}</title>
 
-	<!-- note the special href for files in the Flask "static" folder -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- note the special href for files in the Flask "static" folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
 </head>
+
+{#<header>#}
+{#    <nav>#}
+{#        <ul class="nav-links">#}
+{#            <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link active">Home</a></li>#}
+{#            <li class="nav-item"><a href="{{ url_for('search') }}" class="nav-link">search</a></li>#}
+{#            <li class="nav-item"><a href="{{ url_for('displayAll') }}" class="nav-link">Student Directory</a></li>#}
+{#        </ul>#}
+{#    </nav>#}
+{#    <hr style="clear:both">#}
+{#</header>#}
 <body>
 
 <div id="container">
 
-  <!-- Jinja2 directives: page contents will go between them -->
-  {% block content %}
-  {% endblock %}
+    <!-- Jinja2 directives: page contents will go between them -->
+    {% block content %}
+    {% endblock %}
 
 </div>
 
