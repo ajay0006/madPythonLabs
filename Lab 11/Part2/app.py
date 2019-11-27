@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify
+from flask_bootstrap import Bootstrap
 from wtforms import Form, StringField, TextField, SelectField
 from wtforms.validators import DataRequired
 from appModules import createConnectionSql, getTotalNoOfRowsInDb, getAllDataFrmDb
@@ -12,7 +13,7 @@ totalRows = getTotalNoOfRowsInDb(b)
 valueLists = getAllDataFrmDb(b, a)
 print(valueLists)
 
-
+# venv/Lib/site-packages/flask_bootstrap/static/css/bootstrap.min.css
 # print(totalRows)
 # print('values Test', valueLists)
 # print(totalRows)
@@ -45,11 +46,6 @@ def index():
 @app.route('/students')
 def students():
     return render_template('search-students.html')
-
-
-@app.route('/forms')
-def forms():
-    return render_template('displayAll.html')
 
 
 @app.route('/displayAll.html')

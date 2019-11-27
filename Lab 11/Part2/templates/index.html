@@ -4,12 +4,12 @@
 
 
 
-<div class="'container">
-    <div class="col-md-12 text-center">
-        <h1>{{ the_title }}</h1>
-{#    {% include "nav.html" %}#}
+    <div class="'container">
+        <div class="col-md-12 text-center">
+            <h1>{{ the_title }}</h1>
+            {#    {% include "nav.html" %}#}
+        </div>
     </div>
-</div>
 
     <p>Click any Students</p>
     {#<body>#}
@@ -34,10 +34,24 @@
     <!--  url_for( 'detail', num=pair[0] )  -->
     <!--    inside double curly braces      -->
 
-    <ul>
-        {% for pair in pairs %}
-            <li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
-        {% endfor %}
-    </ul>
+    {#    <ul>#}
+    {#        {% for pair in pairs %}#}
+    {#            <li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>#}
+    {#        {% endfor %}#}
+    {#    </ul>#}
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary"> Student Names</button>
+        <button class="btn btn-primary btn-lg dropdown-toggle dropdown-toggle-split" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+             {% for pair in pairs %}
+                <a href="{{ url-for ( 'openWeb', link = pair[1] )}}" class="dropdown-item">{{ pair[0] }}</a>
+                 <div class="dropdown-divider"></div>
+            {% endfor %}
+        </div>
+
+    </div>
 
 {% endblock %}
