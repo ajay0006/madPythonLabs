@@ -4,24 +4,33 @@
 
     <h3> Full Student Details</h3>
 
-    <div>
-        <table class="table" style="width: 100%">
-            <thead>
-            <tr>
-                <th scope="col"> Student Name</th>
-                <th scope="col"> City</th>
-                <th scope="col"> Country</th>
-            </tr>
-            {% for pair in fourPairs %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-responsive-lg" id="tables" style="width: 100%">
+            {% if fourPairs %}
                 <tr>
+                    {% for key in fourPairs[0] %}
+                        <th onclick="sortTable({{ loop.index0 }})" style="cursor: pointer" scope="col"> {{ key }}</th>
+                    {% endfor %}
+                </tr>
+            {% endif %}
+            {% for dict in fourPairs %}
 
-                    <td><a href="{{ pair[3] }}">{{ pair[0] }}</a></td>
-                    <td>{{ pair[1] }}</td>
-                    <td>{{ pair[2] }}</td>
+                <tbody>
+                <tr>
+                    {% for pair in dict.values() %}
+
+                        <td>{{ pair }}</td>
+                    {% endfor %}
+
 
                 </tr>
+                </tbody>
             {% endfor %}
-            </thead>
+
         </table>
     </div>
 {% endblock %}
+
+{#{% for key in dict_table[0] %}#}
+{#  <th onclick="sortTable({{ loop.index0 }})" style="cursor:crosshair">{{ key }}</th>#}
+{#{% endfor %}#}

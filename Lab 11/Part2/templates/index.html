@@ -42,12 +42,13 @@
 
     <div class="btn-group">
         <button type="button" class="btn btn-primary"> Student Names</button>
-        <button class="btn btn-primary btn-lg dropdown-toggle dropdown-toggle-split" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+        <button class="btn btn-primary btn-lg dropdown-toggle dropdown-toggle-split customScrollDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu scrollable-menu" role="menu">
              {% for pair in pairs %}
-                <a href="{{ url-for ( 'openWeb', link = pair[1] )}}" class="dropdown-item">{{ pair[0] }}</a>
+                <a href="{{ pair[1] }}" target="_blank" class="dropdown-item">{{ pair[0] }}</a>
+{#                 <a {{ url_for( 'openWeb', Link = pair[1] ) }} class="dropdown-item">{{ pair[0] }}</a>#}
                  <div class="dropdown-divider"></div>
             {% endfor %}
         </div>

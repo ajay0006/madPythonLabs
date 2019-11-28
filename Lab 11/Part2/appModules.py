@@ -44,6 +44,10 @@ def getAllDataFrmDb(dataCursor2, connector2):
     return dataList
 
 
+def openWebBrowserLink(Link):
+    webbrowser.open(Link, new=1, autoraise=True)
+
+
 def doesZipWork(bigList):
     studentName = []
     origin = []

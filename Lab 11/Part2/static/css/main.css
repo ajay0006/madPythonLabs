@@ -8,6 +8,12 @@ body {
     margin: 0;
 }
 
+.customScrollDropdown
+{
+    height: 100px;
+    overflow-y: auto;
+}
+
 #container {
     margin: 2em auto;
     max-width: 740px;
