@@ -8,29 +8,23 @@
         <table class="table table-bordered table-hover table-responsive-lg" id="tables" style="width: 100%">
             {% if fourPairs %}
                 <tr>
-                    {% for key in fourPairs[0] %}
-                        <th onclick="sortTable({{ loop.index0 }})" style="cursor: pointer" scope="col"> {{ key }}</th>
+                    {% for values in headers %}
+                        <th onclick="sortTable({{ loop.index0 }})" style="cursor:pointer" scope="col"> {{ values }}</th>
+                        {#            <th onclick="sortTable({{ 1 }})" style="cursor:pointer" scope="col"> City</th>#}
+                        {#            <th onclick="sortTable({{ 2 }})" style="cursor:pointer" scope="col"> Country</th>#}
                     {% endfor %}
                 </tr>
             {% endif %}
-            {% for dict in fourPairs %}
-
+            {% for pair in fourPairs %}
                 <tbody>
                 <tr>
-                    {% for pair in dict.values() %}
-
-                        <td>{{ pair }}</td>
-                    {% endfor %}
-
+                    <td><a href="{{ pair[3] }}" target="_blank">{{ pair[0] }}</a></td>
+                    <td>{{ pair[1] }}</td>
+                    <td>{{ pair[2] }}</td>
 
                 </tr>
                 </tbody>
             {% endfor %}
-
         </table>
     </div>
 {% endblock %}
-
-{#{% for key in dict_table[0] %}#}
-{#  <th onclick="sortTable({{ loop.index0 }})" style="cursor:crosshair">{{ key }}</th>#}
-{#{% endfor %}#}

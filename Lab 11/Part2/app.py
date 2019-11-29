@@ -2,17 +2,15 @@ from flask import Flask, render_template, jsonify, request, url_for
 from flask_bootstrap import Bootstrap
 from wtforms import Form, StringField, TextField, SelectField
 from wtforms.validators import DataRequired
-from appModules import createConnectionSql, getTotalNoOfRowsInDb, getAllDataFrmDb, openWebBrowserLink as Open
-from forms import StudentNameCity
+from appModules import main
 import webbrowser
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Primaverocatch'
-
-a, b = createConnectionSql()
-totalRows = getTotalNoOfRowsInDb(b)
-valueLists = getAllDataFrmDb(b, a)
-
+# a, b = createConnectionSql()
+# totalRows = getTotalNoOfRowsInDb(b)
+# valueLists = getAllDataFrmDb(b, a)
+values = main()
 
 # venv/Lib/site-packages/flask_bootstrap/static/css/bootstrap.min.css
 # print(totalRows)
@@ -55,21 +53,22 @@ def students():
 @app.route('/displayAll.html', methods=['POST', 'GET'])
 def displayAll():
     if request.method == 'GET':
-        newValueList = valueLists.copy()
-        for y in valueLists:
-            y.pop('id', None)
-            y.pop('Link', None)
-        # studentName = []
-        # studentCity = []
-        # studentCountry = []
-        # studentOriginLink = []
-        # for extract in valueLists:
-        #     studentName.append(extract['Student'])
-        #     studentCity.append(extract['City'])
-        #     studentCountry.append(extract['Country'])
-        #     studentOriginLink.append(extract['Link'])
-        # fourPairsValues = zip(studentName, studentCity, studentCountry, studentOriginLink)
-        return render_template('displayAll.html', fourPairs=valueLists,
+        # newValueList = valueLists.copy()
+        # for y in valueLists:
+        #     y.pop('id', None)
+        #     # y.pop('Link', None)
+        studentName = []
+        studentCity = []
+        studentCountry = []
+        studentOriginLink = []
+        headers = ['Student Name', 'City', 'Country']
+        for extract in valueLists:
+            studentName.append(extract['Student'])
+            studentCity.append(extract['City'])
+            studentCountry.append(extract['Country'])
+            studentOriginLink.append(extract['Link'])
+        fourPairsValues = zip(studentName, studentCity, studentCountry, studentOriginLink)
+        return render_template('displayAll.html', fourPairs=fourPairsValues, headers = headers,
                                the_title='Full Student and Origin Table')
 
 
