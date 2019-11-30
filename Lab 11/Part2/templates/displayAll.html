@@ -3,7 +3,15 @@
 {% block content %}
 
     <h3> Full Student Details</h3>
-    <input type="text" id = 'myInput' onkeyup="searchTable()" placeholder="Search for Names...">
+    <div class="input-group input-group-lg">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
+        </div>
+        <input type="text" class='form-control' aria-label="Large" aria-describedby="inputGroup-sizing-sm" id='myInput'
+               onkeyup="searchTable()" placeholder="Search for Names...">
+    </div>
+    <br>
+    <br>
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-responsive-lg" id="tables" style="width: 100%">
             {% if fourPairs %}
@@ -16,14 +24,14 @@
                 </tr>
             {% endif %}
             {% for pair in fourPairs %}
-{#                <tbody>#}
+                {#                <tbody>#}
                 <tr>
                     <td><a href="{{ pair[3] }}" target="_blank">{{ pair[0] }}</a></td>
                     <td>{{ pair[1] }}</td>
                     <td>{{ pair[2] }}</td>
 
                 </tr>
-{#                </tbody>#}
+                {#                </tbody>#}
             {% endfor %}
         </table>
     </div>

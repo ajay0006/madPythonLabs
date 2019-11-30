@@ -1,9 +1,8 @@
-from flask import Flask, render_template, jsonify, request, url_for
-from flask_bootstrap import Bootstrap
-from wtforms import Form, StringField, TextField, SelectField
-from wtforms.validators import DataRequired
+import re
+import webbrowser
+import json
+from flask import Flask, render_template, request
 from appModules import main
-import webbrowser, re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Primaverocatch'
@@ -24,11 +23,6 @@ def index():
     return render_template('index.html', pairs=pairsValues, the_title='Students & Country Index')
 
 
-@app.route('/students')
-def students():
-    return render_template('search-students.html')
-
-
 @app.route('/displayAll.html', methods=['POST', 'GET'])
 def displayAll():
     if request.method == 'GET':
@@ -47,15 +41,10 @@ def displayAll():
                                the_title='Full Student and Origin Table')
 
 
-@app.route('/searchStudents')
-def searchStudents():
-    fullValue = valueLists
-    return render_template('searchStudents.html', fullValue=fullValue, the_title='Search Student Records')
-
-
 @app.route('/testMap.html')
 def testMap():
     links = []
+    combo = []
     for dicts in valueLists:
         for key in dicts.keys():
             if key == 'Link':
@@ -63,7 +52,11 @@ def testMap():
     temp = re.search('@([0-9]?[0-9]\.[0-9]*),([0-9]?[0-9]\.[0-9]*)', links[0], re.DOTALL)
     latitude = temp.groups()[0]
     longitude = temp.groups()[1]
-    return render_template('testMap.html', lat=latitude, long=longitude)
+    combo.append(float(longitude))
+    combo.append(float(latitude))
+    print(combo)
+    # return render_template('testMap.html', latLong=map(json.dumps, combo), the_title='Fly to a location')
+    return render_template('testMap.html', latLong=json.dumps(combo), the_title='Fly to a location')
 
 
 @app.route('/index/<Link>')
