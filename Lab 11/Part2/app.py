@@ -3,45 +3,24 @@ from flask_bootstrap import Bootstrap
 from wtforms import Form, StringField, TextField, SelectField
 from wtforms.validators import DataRequired
 from appModules import main
-import webbrowser
+import webbrowser, re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Primaverocatch'
-# a, b = createConnectionSql()
-# totalRows = getTotalNoOfRowsInDb(b)
-# valueLists = getAllDataFrmDb(b, a)
-values = main()
 
-# venv/Lib/site-packages/flask_bootstrap/static/css/bootstrap.min.css
-# print(totalRows)
-# print('values Test', valueLists)
-# print(totalRows)
-
-
-# @app.route('/')
-# def hello_world():
-#     return jsonify({'Success': 'Flask API by Damilola'})
+valueLists = main()[1]
+totalNoOfRows = main()[0]
 
 
 @app.route('/')
 # @app.route('/index')
 def index():
-    # for x in valueLists:
-    #     x.pop('id', None)
-    # print(valueLists)
     studentName = []
     studentOriginLink = []
     for extract in valueLists:
-        # print(extract)
         studentName.append(extract['Student'])
         studentOriginLink.append(extract['Link'])
-        # print('name', studentName)
-        # print('links', studentOriginLink)
     pairsValues = zip(studentName, studentOriginLink)
-    # pairsValuesList = list(pairsValues)
-    # print(pairsValuesList)
-    # print(pairsValues[0])
-    # form = StudentNameCity()
     return render_template('index.html', pairs=pairsValues, the_title='Students & Country Index')
 
 
@@ -53,10 +32,6 @@ def students():
 @app.route('/displayAll.html', methods=['POST', 'GET'])
 def displayAll():
     if request.method == 'GET':
-        # newValueList = valueLists.copy()
-        # for y in valueLists:
-        #     y.pop('id', None)
-        #     # y.pop('Link', None)
         studentName = []
         studentCity = []
         studentCountry = []
@@ -68,14 +43,32 @@ def displayAll():
             studentCountry.append(extract['Country'])
             studentOriginLink.append(extract['Link'])
         fourPairsValues = zip(studentName, studentCity, studentCountry, studentOriginLink)
-        return render_template('displayAll.html', fourPairs=fourPairsValues, headers = headers,
+        return render_template('displayAll.html', fourPairs=fourPairsValues, headers=headers,
                                the_title='Full Student and Origin Table')
+
+
+@app.route('/searchStudents')
+def searchStudents():
+    fullValue = valueLists
+    return render_template('searchStudents.html', fullValue=fullValue, the_title='Search Student Records')
+
+
+@app.route('/testMap.html')
+def testMap():
+    links = []
+    for dicts in valueLists:
+        for key in dicts.keys():
+            if key == 'Link':
+                links.append(dicts[key])
+    temp = re.search('@([0-9]?[0-9]\.[0-9]*),([0-9]?[0-9]\.[0-9]*)', links[0], re.DOTALL)
+    latitude = temp.groups()[0]
+    longitude = temp.groups()[1]
+    return render_template('testMap.html', lat=latitude, long=longitude)
 
 
 @app.route('/index/<Link>')
 def openWeb(Link):
     webbrowser.open(Link, new=2, autoraise=True)
-    # pass
 
 
 if __name__ == '__main__':
